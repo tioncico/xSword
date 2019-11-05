@@ -8,13 +8,14 @@
 include "./vendor/autoload.php";
 
 go(function (){
-    $xsword = new \XSword\XSword();
+    $xsword = new \XSword\XSword(new \XSword\Config());
 
-    $result= $xsword->exec(function (){
+    $xsword->exec(function (){
         $client = new \EasySwoole\HttpClient\HttpClient('http://www.x.cn');
         $data = $client->get();
         return $data->getStatusCode();
     });
+
 
 
 });

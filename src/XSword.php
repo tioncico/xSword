@@ -10,15 +10,28 @@ namespace XSword;
 
 class XSword
 {
-    protected $timeout = 3;
+    protected $config;
 
-    function exec(callable $callback, $coroutineNum = 100, $requestMaxNum = 100)
+    public function __construct(Config $config)
     {
+        $this->config = $config;
+    }
+
+
+    function exec(callable $callback)
+    {
+        switch ($this->config->getRequestType()) {
+            case Config::TYPE_ONCE:
+                $result = $this->request($callback);
+                break;
+        }
 
     }
 
-    function request(callable $callback, $coroutineNum = 100, $requestMaxNum = 100)
+    function request(callable $callback)
     {
+        $requestMaxNum = $this->config->getRequestMaxNum();
+        $coroutineNum = $this->config->getCoroutineNum();
         $i = $requestMaxNum;
         while ($i >= 0) {
             $csp = new \EasySwoole\Component\Csp();
