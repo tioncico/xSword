@@ -18,13 +18,11 @@ class Config extends SplBean
     //协程数
     protected $coroutineNum=100;
     //最大并发数
-    protected $requestMaxNum=10000;
-    //qps
-    protected $qps=100;
+    protected $requestMaxNum=100;
     //请求时间
     protected $requestTime=60*60*1;
     //请求类型
-    protected $requestType = self::TYPE_ONCE;
+    protected $requestType = self::TYPE_CONTINUED;
 
     const TYPE_ONCE=1;//一次性测试
     const TYPE_CONTINUED=2;//持续压力测试
@@ -75,22 +73,6 @@ class Config extends SplBean
     public function setRequestMaxNum(int $requestMaxNum): void
     {
         $this->requestMaxNum = $requestMaxNum;
-    }
-
-    /**
-     * @return int
-     */
-    public function getQps(): int
-    {
-        return $this->qps;
-    }
-
-    /**
-     * @param int $qps
-     */
-    public function setQps(int $qps): void
-    {
-        $this->qps = $qps;
     }
 
     /**

@@ -9,7 +9,9 @@
 namespace XSword;
 
 
-class Result
+use EasySwoole\Spl\SplBean;
+
+class Result extends SplBean
 {
     //文档长度
     protected $bodyLength;
@@ -17,6 +19,8 @@ class Result
     protected $isSuccess=true;
     //请求时间
     protected $responseTime;
+
+    protected $responseBody;
 
     /**
      * @return mixed
@@ -65,6 +69,23 @@ class Result
     {
         $this->responseTime = $responseTime;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseBody()
+    {
+        return $this->responseBody;
+    }
+
+    /**
+     * @param mixed $responseBody
+     */
+    public function setResponseBody($responseBody): void
+    {
+        $this->responseBody = $responseBody;
+    }
+
 
 
 }
